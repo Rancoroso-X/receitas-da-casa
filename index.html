@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Receitas da Casa</title>
+<meta name="description" content="Receitas tiradas de vídeos que a gente salvou, escritas por extenso, com fotos de cada passo e modo cozinhar.">
+<meta name="theme-color" content="#2B1A2C">
+<link rel="icon" href="icone.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para as receitas</a>
+
+<div class="casca">
+  <header class="capa" id="capa">
+    <a class="marca" href="#/">
+      <span class="marca-nome">Receitas da Casa</span>
+      <span class="marca-sub" id="subtitulo">receitas tiradas de vídeos que a gente salvou</span>
+    </a>
+    <label class="busca">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <span class="sr">Buscar</span>
+      <input id="campo-busca" type="search" placeholder="Buscar prato ou ingrediente" autocomplete="off" enterkeyhint="search">
+    </label>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <section id="tela-galeria" aria-label="Galeria de receitas">
+      <nav class="abas" id="abas" aria-label="Tipos de prato"></nav>
+      <div class="barra-da-lista">
+        <p id="contagem" aria-live="polite"></p>
+        <button class="botao-filtros" id="abrir-filtros" type="button" aria-haspopup="dialog">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          Filtros <span id="filtros-ativos" class="anotacao-contagem"></span>
+        </button>
+      </div>
+      <div class="filtros-em-uso" id="filtros-em-uso"></div>
+      <ol class="grade" id="grade"></ol>
+      <div class="vazio" id="vazio" hidden>
+        <p class="vazio-titulo">Nada por aqui com esse filtro.</p>
+        <p>Tente tirar um filtro ou buscar por outro ingrediente.</p>
+        <button type="button" class="botao-texto" id="limpar-tudo">Limpar busca e filtros</button>
+      </div>
+    </section>
+
+    <article id="tela-receita" hidden></article>
+  </main>
+</div>
+
+<dialog class="painel-filtros" id="painel-filtros" aria-labelledby="titulo-filtros">
+  <form method="dialog" id="form-filtros">
+    <header class="painel-topo">
+      <h2 id="titulo-filtros">Filtros</h2>
+      <button class="botao-icone" value="fechar" aria-label="Fechar filtros">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+    <div class="painel-corpo">
+      <fieldset>
+        <legend>Tenho em casa</legend>
+        <p class="ajuda">Escreva o que tem e aperte Enter. As receitas que usam mais coisas suas sobem.</p>
+        <div class="tenho">
+          <div id="tenho-lista" class="tenho-lista"></div>
+          <input id="tenho-campo" type="text" placeholder="ex.: frango, batata, creme de leite" autocomplete="off" enterkeyhint="done">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Tempo</legend>
+        <div class="opcoes" data-grupo="tempo">
+          <label><input type="radio" name="tempo" value="" checked><span>Qualquer</span></label>
+          <label><input type="radio" name="tempo" value="30"><span>Até 30 min</span></label>
+          <label><input type="radio" name="tempo" value="60"><span>Até 1 hora</span></label>
+          <label><input type="radio" name="tempo" value="mais"><span>Mais de 1 hora</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Dificuldade</legend>
+        <div class="opcoes" data-grupo="dificuldade">
+          <label><input type="radio" name="dificuldade" value="" checked><span>Qualquer</span></label>
+          <label><input type="radio" name="dificuldade" value="fácil"><span>Fácil</span></label>
+          <label><input type="radio" name="dificuldade" value="média"><span>Média</span></label>
+          <label><input type="radio" name="dificuldade" value="difícil"><span>Difícil</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Precisa de</legend>
+        <div class="opcoes" id="opcoes-equipamento"></div>
+      </fieldset>
+      <fieldset>
+        <legend class="sr">Outros</legend>
+        <label class="interruptor"><input type="checkbox" name="vegetariano"><span>Só vegetarianas</span></label>
+      </fieldset>
+    </div>
+    <footer class="painel-rodape">
+      <button type="button" class="botao-texto" id="limpar-filtros">Limpar</button>
+      <button class="botao-principal" value="aplicar" id="ver-resultados">Ver receitas</button>
+    </footer>
+  </form>
+</dialog>
+
+<div class="cozinhar" id="cozinhar" role="dialog" aria-modal="true" aria-labelledby="cozinhar-titulo" hidden></div>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
